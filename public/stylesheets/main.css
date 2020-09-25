@@ -1,0 +1,200 @@
+body {
+    background: black;
+    scrollbar-color: red black;
+}
+
+.container-content::-webkit-scrollbar {
+    background-color: black;
+}
+
+.container-content::-webkit-scrollbar-thumb {
+    background: red;
+}
+
+/* Buttons */
+.container-content::-webkit-scrollbar-button
+{
+  border-style: solid;
+  height: 16px;
+  width: 16px;
+}
+
+/* Up */
+.container-content::-webkit-scrollbar-button:vertical:decrement
+{
+  border-width: 0 7px 14px 7px;
+  border-color: transparent transparent #404040 transparent;
+}
+
+.container-content::-webkit-scrollbar-button:vertical:decrement:hover
+{
+  border-color: transparent transparent #505050 transparent;
+}
+
+
+/* Down */
+.container-content::-webkit-scrollbar-button:vertical:increment
+{
+  border-width: 14px 7px 0 7px;
+  border-color: #404040 transparent transparent transparent;
+}
+
+.container-content::-webkit-scrollbar-button:vertical:increment:hover
+{
+  border-color: #505050 transparent transparent transparent;
+}
+
+.container {
+    display: flex;
+}
+
+.navbar-commie {
+    background-color: black;
+}
+
+.navbar-commie .navbar-brand,
+.navbar-commie .navbar-text,
+.navbar-commie .nav-link {
+    color: red;
+}
+
+.navbar-commie .nav-link:hover {
+    color: yellow;
+}
+
+.container-header {
+    background: #CE090E;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+.container-content {
+    padding-top: 20px;
+    background: #fb9a9d;
+    height: 50vh;
+    overflow: auto;
+    margin-bottom: 0%;
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: yellow;
+}
+
+small {
+    color: red;
+}
+
+.home-image {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 100%;
+    width: 100%;
+}
+
+.home-content-left {
+    max-height: 440px;
+    max-width: 440px;
+    /* margin-left: 10px; */
+}
+
+.home-content-center {
+    font-family: 'Just Another Hand', cursive;
+    font-size: 225%;
+    padding: 75px;
+}
+
+.header-center {
+    background: #CE090E;
+    margin-top: auto;
+    margin-bottom: auto;
+    text-align: center;
+}
+
+.header-center p {
+    /* font-family: 'Permanent Marker', cursive; */
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 600%;
+    color: black;
+}
+
+.big-letter {
+    font-size: 150%;
+}
+
+.post-title {
+    font-family: 'Just Another Hand', cursive;
+    font-size: 500%;
+    color: black;
+}
+
+.post-content {
+    font-family: 'Just Another Hand', cursive;
+    font-size: 225%;
+    color: black;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.index-post-title {
+    font-family: 'Just Another Hand', cursive;
+    font-size: 400%;
+    color: black;
+}
+
+.post-link {
+    font-family: 'Just Another Hand', cursive;
+    font-size: 225%;
+    color: #CE090E;
+}
+
+.index-link:hover {
+    font-family: 'Just Another Hand', cursive;
+    font-size: 150%;
+}
+
+.index-post-title:hover {
+    color: red;
+}
+
+.lefty-link h3 {
+    font-family: 'Just Another Hand', cursive;
+    font-size: 300%;
+    color: black;
+}
+
+.lefty-link h3:hover {
+    font-size: 500%;
+    color: red;
+}
+
+.lefty-links-container {
+    margin-bottom: 20px;
+}
+
+.posts-container {
+    margin-bottom: 30px;
+}
+
+.donate-container {
+    margin-bottom: 25px;
+}
+
+.donate-link h3 {
+    font-family: 'Just Another Hand', cursive;
+    font-size: 300%;
+    color: black;
+}
+
+.donate-link h3:hover {
+    font-size: 500%;
+    color: red;
+}

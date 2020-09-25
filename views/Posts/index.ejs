@@ -1,0 +1,13 @@
+<%- include('../partials/header') %>
+
+<div class="container-fluid container-content">
+    <div class="container-fluid posts-container">
+        <% posts.forEach(function(post){ %>
+            <div class="row justify-content-center">
+                <a href="/posts/<%= post._id %>" class="index-link"><h4 class="index-post-title"><%= post.title %></h4></a>
+            </div>
+        <% }); %>
+    </div>
+</div>
+
+<%- include('../partials/footer') %>

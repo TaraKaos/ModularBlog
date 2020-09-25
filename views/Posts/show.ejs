@@ -1,0 +1,22 @@
+<%- include('../partials/header') %>
+
+<div class="container-fluid container-content">
+    <div class="row justify-content-center">
+        <h4 class="post-title"><%= post.title %></h4>
+    </div>
+    <div class="row justify-content-center">
+        <img src="<%= post.image %>" alt="" class="post-image">
+    </div>
+    <div class="row justify-content-center">
+        <div class="container post-content">
+            <p><%= post.content %></p>
+        </div>
+    </div>
+    <div class="container justify-content-center">
+        <a href="/posts" class="post-link">More Posts</a>
+    </div>
+</div>
+
+
+
+<%- include('../partials/footer') %>
