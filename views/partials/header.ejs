@@ -17,7 +17,9 @@
                 </div>
                 <div class="col-sm-6 header-center">
                     <p>
-                        <span class="big-letter">T</span>he <span class="big-letter">C</span>ommie <span class="big-letter">A</span>ngel
+                        <% settings.headerTitle.split(" ").forEach(function(word){ %>
+                            <span class="big-letter"><%= word[0] %></span><%= word.substring(1) %>
+                        <% }); %>
                     </p>
                 </div>
                 <div class="col-sm-3">

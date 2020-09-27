@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var Post = require("./models/post");
+var Settings = require("./models/settings");
 
 var data = 
 [
@@ -93,7 +94,11 @@ var data =
     	image: "",
     	content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum"
 	}
-]
+];
+
+var settingsData = {
+	headerTitle: "TEST"
+};
 
 function seedDB(){
     //Remove all posts
@@ -113,7 +118,33 @@ function seedDB(){
                 }
             })
         })
-    })
+	})
+	
+	//Remove all settings
+	Settings.deleteMany({}, function(err)
+	{
+		if (err)
+		{
+			console.log(err);
+		}
+		else
+		{
+			console.log("removed settings!");
+
+			//Add Settings
+			Settings.create(settingsData, function(err, settings)
+			{
+				if (err)
+				{
+					console.log(err);
+				} 
+				else 
+				{
+					console.log("Added Settings");
+				}
+			});
+		}
+	});
 }
 
 module.exports = seedDB;

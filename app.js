@@ -3,9 +3,10 @@ var app = express();
 var bodyParser = require("body-parser");
 var mongoose = require('mongoose');
 var Post = require("./models/post");
+var Settings = require("./models/settings");
 var seedDB = require("./seeds");
 
-mongoose.connect("mongodb://localhost:27017/thecommieangel", 
+mongoose.connect("mongodb://localhost:27017/modularblog", 
 {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -20,22 +21,46 @@ seedDB();
 
 app.get("/", function(req, res)
 {
-    res.render("home");
+    Settings.findOne({}, function(err, settings)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log(settings);
+
+            res.render("home", {settings});
+        }
+    });
 });
 
 //Get Posts
 app.get("/Posts", function(req, res)
 {
-    // get all posts from db
-    Post.find({}, function(err, posts)
+    Settings.findOne({}, function(err, settings)
     {
         if (err)
         {
             console.log(err);
-        } 
-        else 
+        }
+        else
         {
-            res.render('posts/index', {posts: posts});
+            console.log(settings);
+
+            // get all posts from db
+            Post.find({}, function(err, posts)
+            {
+                if (err)
+                {
+                    console.log(err);
+                } 
+                else 
+                {
+                    res.render('posts/index', {posts: posts, settings: settings});
+                }
+            });
         }
     });
 });
@@ -59,7 +84,7 @@ app.post("/Posts", function(req, res)
         else
         {
             // redirect back to posts page
-            res.redirect("/Posts");
+            res.redirect("/Posts", {settings});
         }
     });
 });
@@ -67,14 +92,24 @@ app.post("/Posts", function(req, res)
 //New Post
 app.get("/posts/new", function(req, res)
 {
-    res.render("posts/new");
+    Settings.findOne({}, function(err, settings){
+        if (err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log(settings);
+            
+            res.render("posts/new", {settings});
+        }
+    });
 });
 
 //Show Post
 app.get("/posts/:id", function(req, res)
 {
-    //find the post with provided ID
-    Post.findById(req.params.id, function(err, foundPost)
+    Settings.findOne({}, function(err, settings)
     {
         if (err)
         {
@@ -82,9 +117,22 @@ app.get("/posts/:id", function(req, res)
         }
         else
         {
-            console.log(foundPost);
-            //render show template with that campground
-            res.render("posts/show", {post: foundPost});
+            console.log(settings);
+            
+            //find the post with provided ID
+            Post.findById(req.params.id, function(err, foundPost)
+            {
+                if (err)
+                {
+                    console.log(err);
+                }
+                else
+                {
+                    console.log(foundPost);
+                    //render show template with that campground
+                    res.render("posts/show", {post: foundPost, settings: settings});
+                }
+            });
         }
     });
 });
@@ -92,19 +140,92 @@ app.get("/posts/:id", function(req, res)
 //Lefty Links
 app.get("/LeftyLinks", function(req, res)
 {
-    res.render("leftylinks");
+    Settings.findOne({}, function(err, settings)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log(settings);
+            
+            res.render("leftylinks", {settings});
+        }
+    });
 });
 
 //Donations
 app.get("/Donate", function(req, res)
 {
-    res.render("donate");
+    Settings.findOne({}, function(err, settings)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log(settings);
+            
+            res.render("donate", {settings});
+        }
+    });
 });
 
 //Admin Portal
 app.get("/Admin", function(req, res)
 {
-    res.render("admin");
+    Settings.findOne({}, function(err, settings)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log(settings);
+            
+            res.render("admin", {settings});
+        }
+    });
+});
+
+app.post("/Admin", function(req, res)
+{
+    console.log(req.body);
+
+    var newSettings = {
+        headerTitle: req.body.headerTitle
+    };
+
+    //Remove all settings
+    Settings.deleteMany({}, function(err)
+    {
+        if (err)
+        {
+			console.log(err);
+        }
+        else
+        {
+            console.log("removed settings!");
+
+            //Add Settings
+            Settings.create(newSettings, function(err, settings)
+            {
+                if (err)
+                {
+			        console.log(err);
+                } 
+                else 
+                {
+			        console.log("Added Settings");
+		        }
+            });
+        }
+	});
+    
+    res.redirect("/admin");
 });
 
 app.listen(process.env.PORT || 3000, process.env.IP, function()

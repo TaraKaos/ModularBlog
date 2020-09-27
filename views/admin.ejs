@@ -1,1 +1,15 @@
-<h1>ADMIN PORTAL</h1>
+<%- include('./partials/header.ejs') %>
+
+<div class="container-fluid-content container-content">
+    <h3>Header Settings</h3>
+
+    <form action="/admin" method="POST">
+        <label for="headerTitle">Header Title</label>
+        <input type="test" name="headerTitle" placeholder="Header Title" value="<%= settings.headerTitle %>">
+        <br>
+
+        <button>Save All Changes</button>
+    </form>
+</div>
+
+<%- include('partials/footer') %>
