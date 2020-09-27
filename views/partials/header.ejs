@@ -12,7 +12,9 @@
         <div class="container-fluid container-header overflow-hidden">
             <div class="row">
                 <div class="col-sm-3">
-                    <img src="<%= settings.headerLeftImageURL %>" class="float-left header-image" alt="">
+                    <% if(settings.headerLeftImageURL != ""){ %>
+                        <img src="<%= settings.headerLeftImageURL %>" class="float-left header-image" alt="">
+                    <% } %>
                 </div>
                 <div class="col-sm-6 header-center">
                     <p>
@@ -22,7 +24,9 @@
                     </p>
                 </div>
                 <div class="col-sm-3">
-                    <img src="<%= settings.headerRightImageURL %>" class="float-right header-image" alt="">
+                    <% if(settings.headerRightImageURL != ""){ %>
+                        <img src="<%= settings.headerRightImageURL %>" class="float-right header-image" alt="">
+                    <% } %>
                 </div>
             </div>
         </div>

@@ -97,13 +97,13 @@ var data =
 ];
 
 var settingsData = {
-	headerLeftImageURL: "/Images/Star.png",
-	headerTitle: "TEST",
-	headerRightImageURL: "/Images/Star.png",
-	homeLeftImageURL: "/Images/RedCanDoIt.jpg",
-	homeAboutMe: "My name is Angel. Some facts about me for this blog: I'm a mom to one nonbinary child, & wife to an out & proud trans woman. I am disabled & queer. I live in Colorado, grew up here, but born in Arkansas. I used to be in the Navy. I support the 2nd Ammendment & have dreams of living off grid. I used to be a \"Bleeding Heart Liberal\". Now I'm the Marxist Fuck your revisionist American history lied to you about.",
-	homeAboutMeSignature: "MLM ANCOM",
-	homeRightImageURL: ""
+	headerLeftImageURL: "/Images/placeholder.png",
+	headerTitle: "Website Title",
+	headerRightImageURL: "/Images/placeholder.png",
+	homeLeftImageURL: "/Images/placeholder.png",
+	homeAboutMe: "About Me Text",
+	homeAboutMeSignature: "Signature Text",
+	homeRightImageURL: "/Images/placeholder.png"
 };
 
 function seedDB(){
