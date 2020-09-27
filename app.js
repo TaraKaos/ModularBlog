@@ -196,7 +196,13 @@ app.post("/Admin", function(req, res)
     console.log(req.body);
 
     var newSettings = {
-        headerTitle: req.body.headerTitle
+        headerLeftImageURL: req.body.headerLeftImageURL,
+        headerTitle: req.body.headerTitle,
+        headerRightImageURL: req.body.headerRightImageURL,
+        homeLeftImageURL: req.body.homeLeftImageURL,
+        homeAboutMe: req.body.homeAboutMe,
+        homeAboutMeSignature: req.body.homeAboutMeSignature,
+        homeRightImageURL: req.body.homeRightImageURL
     };
 
     //Remove all settings

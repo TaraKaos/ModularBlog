@@ -3,22 +3,22 @@
 <div class="container-fluid container-content">
     <div class="row">
         <div class="col-sm-3 home-content-left">
-            <img src="/Images/RedCanDoIt.jpg" class="home-image" alt="">
+            <% if(settings.homeLeftImageURL != ""){ %>
+                <img src="<%= settings.homeLeftImageURL %>" class="home-image" alt="">
+            <% } %>
         </div>
         <div class="col-sm-6 home-content-center">
             <p>
-                My name is Angel. Some facts about me for this blog: 
-                I'm a mom to one nonbinary child, & wife to an out & 
-                proud trans woman. I am disabled & queer. I live in
-                Colorado, grew up here, but born in Arkansas. I used
-                to be in the Navy. I support the 2nd Ammendment &
-                have dreams of living off grid. I used to be a
-                "Bleeding Heart Liberal". Now I'm the Marxist Fuck your 
-                revisionist American history lied to you about. <strong>MLM ANCOM</strong>
+                <%= settings.homeAboutMe %>
+                <% if(settings.homeAboutMeSignature != ""){ %>
+                    <strong><%= settings.homeAboutMeSignature %></strong>
+                <% } %>
             </p>
         </div>
         <div class="col-sm-3 home-content-right">
-
+            <% if(settings.homeRightImageURL != ""){ %>
+                <img src="<%= settings.homeRightImageURL %>" class="home-image" alt="">
+            <% } %>
         </div>
     </div>
 </div>

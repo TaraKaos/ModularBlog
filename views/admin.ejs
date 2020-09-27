@@ -1,13 +1,40 @@
 <%- include('./partials/header.ejs') %>
 
 <div class="container-fluid-content container-content">
-    <h3>Header Settings</h3>
-
     <form action="/admin" method="POST">
-        <label for="headerTitle">Header Title</label>
-        <input type="test" name="headerTitle" placeholder="Header Title" value="<%= settings.headerTitle %>">
+        <h3>Header Settings</h3>
+
+        <label for="headerLeftImageURL">Header Left Image URL</label>
+        <input type="text" name="headerLeftImageURL" placeholder="Header Left Image URL" value="<%= settings.headerLeftImageURL %>">
         <br>
 
+        <label for="headerTitle">Header Title</label>
+        <input type="text" name="headerTitle" placeholder="Header Title" value="<%= settings.headerTitle %>">
+        <br>
+
+        <label for="headerRightImageURL">Header Right Image URL</label>
+        <input type="text" name="headerRightImageURL" placeholder="Header Right Image URL" value="<%= settings.headerRightImageURL %>">
+        <br>
+
+        <br>
+        <h3>Home Settings</h3>
+        <label for="homeLeftImageURL">Home Left Image URL</label>
+        <input type="text" name="homeLeftImageURL" placeholder="Home Left Image URL" value="<%= settings.homeLeftImageURL %>">
+        <br>
+
+        <label for="homeAboutMe">Home About Me</label>
+        <textarea id="homeAboutMe" name="homeAboutMe" rows="4" cols="50"><%= settings.homeAboutMe %></textarea>
+        <br>
+
+        <label for="homeAboutMeSignature">Home About Me Signature</label>
+        <input type="text" name="homeAboutMeSignature" placeholder="Home About Me Signature" value="<%= settings.homeAboutMeSignature %>">
+        <br>
+
+        <label for="homeRightImageURL">Home Right Image URL</label>
+        <input type="text" name="homeRightImageURL" placeholder="Home Right Image URL" value="<%= settings.homeRightImageURL %>">
+        <br>
+
+        <br>
         <button>Save All Changes</button>
     </form>
 </div>

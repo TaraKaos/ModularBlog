@@ -200,3 +200,8 @@ small {
     font-size: 500%;
     color: red;
 }
+
+.header-image {
+    width: 353px;
+    height: 308px;
+}
