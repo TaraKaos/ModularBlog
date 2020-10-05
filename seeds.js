@@ -116,7 +116,7 @@ var settingsData = {
 	navbarAdminPostsButtonTitle: "Admin Posts",
 	navbarAdminLinksButtonTitle: "Admin Links",
 	navbarAdminDonationLinksButtonTitle: "Admin Donation Links",
-	footerCopyright: "Copyright 2020, Created by Tara Ford"
+	footerCopyright: "Copyright 2020"
 };
 
 function seedDB(){
