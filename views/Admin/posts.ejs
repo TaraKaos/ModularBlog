@@ -1,11 +1,11 @@
 <%- include('../partials/header') %>
 
-<h1>Admin Posts</h1>
-
 <div class="container-fluid container-content">
+    <h1>Posts Administration</h1>
+    
     <div class="container-fluid posts-container">
         <% posts.forEach(function(post){ %>
-            <div class="row justify-content-center">
+            <div class="row">
                 <p class="admin-post-title"><%= post.title %></p>
                 <a class="admin-post-link" href="/posts/<%= post._id %>"><p>View</p></a>
                 <a class="admin-post-link" href="/posts/<%= post._id %>/Edit"><p>Edit</p></a>
@@ -13,6 +13,8 @@
             </div>
         <% }); %>
     </div>
+
+    <a class="admin-post-link" href="/admin/newPost"><p>Create New Post</p></a>
 </div>
 
 <%- include('../partials/footer') %>
