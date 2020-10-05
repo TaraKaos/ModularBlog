@@ -1,10 +1,13 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
-var mongoose = require('mongoose');
-var Post = require("./models/post");
-var Settings = require("./models/settings");
-var seedDB = require("./seeds");
+var express       = require("express"),
+    app           = express(),
+    bodyParser    = require("body-parser"),
+    mongoose      = require('mongoose'),
+    passport      = require("passport"),
+    LocalStrategy = require("passport-local"),
+    Post          = require("./models/post"),
+    Settings      = require("./models/settings"),
+    User          = require("./models/user"),
+    seedDB        = require("./seeds");
 
 mongoose.connect("mongodb://localhost:27017/modularblog", 
 {
@@ -19,7 +22,20 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 seedDB();
 
-app.get("/", function(req, res)
+// PASSPORT CONFIGURATION
+app.use(require("express-session")({
+	secret: "Communism WIll Win",
+	resave: false,
+	saveUninitialized: false
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+
+app.use(function(req, res, next)
 {
     Settings.findOne({}, function(err, settings)
     {
@@ -30,86 +46,70 @@ app.get("/", function(req, res)
         else
         {
             console.log(settings);
-
-            res.render("home", {settings});
+            res.locals.currentUser = req.user;
+            res.locals.settings = settings;
+            next();
         }
     });
+});
+
+app.get("/", function(req, res)
+{
+    res.render("home");
 });
 
 //Get Posts
 app.get("/Posts", function(req, res)
 {
-    Settings.findOne({}, function(err, settings)
+    // get all posts from db
+    Post.find({}, function(err, posts)
     {
         if (err)
         {
             console.log(err);
-        }
-        else
+        } 
+        else 
         {
-            console.log(settings);
-
-            // get all posts from db
-            Post.find({}, function(err, posts)
-            {
-                if (err)
-                {
-                    console.log(err);
-                } 
-                else 
-                {
-                    res.render('posts/index', {posts: posts, settings: settings});
-                }
-            });
+            res.render('posts/index', {posts: posts});
         }
     });
 });
 
-//Create Post
-app.post("/Posts", function(req, res)
-{
-    //get data from form and add to Posts array
-    var title = req.body.title;
-    var image = req.body.image;
-    var content = req.body.content;
-    var newPost = {title: title, image: image, content: content};
+// //Create Post
+// app.post("/Posts", function(req, res)
+// {
+//     //get data from form and add to Posts array
+//     var title = req.body.title;
+//     var image = req.body.image;
+//     var content = req.body.content;
+//     var newPost = {title: title, image: image, content: content};
 
-    //create a new post and save to DB
-    Post.create(newPost, function(err, newlyCreatedPost)
-    {
-        if (err)
-        {
-            console.log(err);
-        }
-        else
-        {
-            // redirect back to posts page
-            res.redirect("/Posts", {settings});
-        }
-    });
-});
+//     //create a new post and save to DB
+//     Post.create(newPost, function(err, newlyCreatedPost)
+//     {
+//         if (err)
+//         {
+//             console.log(err);
+//         }
+//         else
+//         {
+//             // redirect back to posts page
+//             res.redirect("/Posts");
+//         }
+//     });
+// });
 
-//New Post
-app.get("/posts/new", function(req, res)
-{
-    Settings.findOne({}, function(err, settings){
-        if (err)
-        {
-            console.log(err);
-        }
-        else
-        {
-            console.log(settings);
-            
-            res.render("posts/new", {settings});
-        }
-    });
-});
+// //New Post
+// app.get("/posts/new", function(req, res)
+// {
+//     res.render("posts/new");
+// });
 
 //Show Post
 app.get("/posts/:id", function(req, res)
 {
-    Settings.findOne({}, function(err, settings)
+    //find the post with provided ID
+    Post.findById(req.params.id, function(err, foundPost)
     {
         if (err)
         {
@@ -117,22 +117,9 @@ app.get("/posts/:id", function(req, res)
         }
         else
         {
-            console.log(settings);
-            
-            //find the post with provided ID
-            Post.findById(req.params.id, function(err, foundPost)
-            {
-                if (err)
-                {
-                    console.log(err);
-                }
-                else
-                {
-                    console.log(foundPost);
-                    //render show template with that campground
-                    res.render("posts/show", {post: foundPost, settings: settings});
-                }
-            });
+            console.log(foundPost);
+            //render show template with that campground
+            res.render("posts/show", {post: foundPost});
         }
     });
 });
@@ -140,62 +127,73 @@ app.get("/posts/:id", function(req, res)
 //Lefty Links
 app.get("/LeftyLinks", function(req, res)
 {
-    Settings.findOne({}, function(err, settings)
-    {
-        if (err)
-        {
-            console.log(err);
-        }
-        else
-        {
-            console.log(settings);
-            
-            res.render("leftylinks", {settings});
-        }
-    });
+    res.render("leftylinks");
 });
 
 //Donations
 app.get("/Donate", function(req, res)
 {
-    Settings.findOne({}, function(err, settings)
-    {
-        if (err)
-        {
-            console.log(err);
-        }
-        else
-        {
-            console.log(settings);
-            
-            res.render("donate", {settings});
-        }
-    });
+    res.render("donate");
 });
 
-//Admin Portal
-app.get("/Admin", function(req, res)
+// ---ADMIN/LOGIN ROUTES---
+// show login form
+app.get("/admin/login", function(req, res)
 {
-    Settings.findOne({}, function(err, settings)
-    {
-        if (err)
-        {
-            console.log(err);
-        }
-        else
-        {
-            console.log(settings);
-            
-            res.render("admin", {settings});
-        }
-    });
+	res.render("admin/login");
 });
 
-app.post("/Admin", function(req, res)
+// handling login logic
+app.post("/admin/login", passport.authenticate("local", 
+	{
+		successRedirect: "/admin/settings", 
+		failureRedirect: "/admin/login"
+    }), function (req, res){   
+});
+
+// logic route
+app.get("/admin/logout", function(req, res)
+{
+	req.logout();
+	res.redirect("/admin/settings");
+});
+
+// show register form
+app.get("/admin/register", isLoggedIn, function(req, res)
+{
+	res.render("admin/register");
+});
+
+//handle sign up logic
+app.post("/admin/register", function(req, res)
+{
+	var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user)
+    {
+		if (err)
+		{
+			console.log(err);
+			return res.render("admin/register");
+		}
+        passport.authenticate("local")(req, res, function()
+        {
+			res.redirect("/admin/settings");
+		});
+	});
+});
+
+//Admin Settings
+app.get("/admin/settings", isLoggedIn, function(req, res)
+{
+    res.render("admin/settings");
+});
+
+app.post("/admin/settings", isLoggedIn, function(req, res)
 {
     console.log(req.body);
 
-    var newSettings = {
+    var newSettings = 
+    {
         headerLeftImageURL: req.body.headerLeftImageURL,
         headerTitle: req.body.headerTitle,
         headerRightImageURL: req.body.headerRightImageURL,
@@ -233,6 +231,16 @@ app.post("/Admin", function(req, res)
     
     res.redirect("/admin");
 });
+
+function isLoggedIn(req, res, next)
+{
+    if (req.isAuthenticated())
+    {
+		return next();
+	}
+	
+	res.redirect("/admin/login");
+}
 
 app.listen(process.env.PORT || 3000, process.env.IP, function()
 {

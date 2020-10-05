@@ -48,4 +48,15 @@
             <li class="nav-item">
                 <a href="https://twitter.com/Commie_Angel" class="nav-link" target="_blank">Twitter</a>
             </li>
+            <% if (currentUser){ %>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/settings">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/register">Register</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin/logout">Logout</a>
+                </li>
+            <% } %>
         </ul>
