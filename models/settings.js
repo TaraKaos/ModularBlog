@@ -17,7 +17,8 @@ var settingsSchema = new mongoose.Schema({
 	navbarSettingsButtonTitle: String,
 	navbarRegisterButtonTitle: String,
     navbarLogoutButtonTitle: String,
-    navbarTwitterURL: String
+    navbarTwitterURL: String,
+    footerCopyright: String
 });
 
 module.exports = mongoose.model("Settings", settingsSchema);

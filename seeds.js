@@ -112,7 +112,8 @@ var settingsData = {
 	navbarSettingsButtonTitle: "Settings",
 	navbarRegisterButtonTitle: "Register",
 	navbarLogoutButtonTitle: "Logout",
-	navbarTwitterURL: ""
+	navbarTwitterURL: "",
+	footerCopyright: "Copyright 2020, Created by Tara Ford"
 };
 
 function seedDB(){

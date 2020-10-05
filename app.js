@@ -179,7 +179,8 @@ app.post("/admin/settings", isLoggedIn, function(req, res)
 	    navbarSettingsButtonTitle: req.body.navbarSettingsButtonTitle,
 	    navbarRegisterButtonTitle: req.body.navbarRegisterButtonTitle,
         navbarLogoutButtonTitle: req.body.navbarLogoutButtonTitle,
-        navbarTwitterURL: req.body.navbarTwitterURL
+        navbarTwitterURL: req.body.navbarTwitterURL,
+        footerCopyright: req.body.footerText
     };
 
     //Remove all settings
