@@ -18,6 +18,9 @@ var settingsSchema = new mongoose.Schema({
 	navbarRegisterButtonTitle: String,
     navbarLogoutButtonTitle: String,
     navbarTwitterURL: String,
+    navbarAdminPostsButtonTitle: String,
+	navbarAdminLinksButtonTitle: String,
+	navbarAdminDonationLinksButtonTitle: String,
     footerCopyright: String
 });
 

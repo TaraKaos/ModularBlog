@@ -135,7 +135,7 @@ app.get("/admin/register", isLoggedIn, function(req, res)
 });
 
 //handle sign up logic
-app.post("/admin/register", function(req, res)
+app.post("/admin/register", isLoggedIn, function(req, res)
 {
 	var newUser = new User({username: req.body.username});
     User.register(newUser, req.body.password, function(err, user)
@@ -180,6 +180,9 @@ app.post("/admin/settings", isLoggedIn, function(req, res)
 	    navbarRegisterButtonTitle: req.body.navbarRegisterButtonTitle,
         navbarLogoutButtonTitle: req.body.navbarLogoutButtonTitle,
         navbarTwitterURL: req.body.navbarTwitterURL,
+        navbarAdminPostsButtonTitle: req.body.navbarAdminPostsButtonTitle,
+	    navbarAdminLinksButtonTitle: req.body.navbarAdminLinksButtonTitle,
+	    navbarAdminDonationLinksButtonTitle: req.body.navbarAdminDonationLinksButtonTitle,
         footerCopyright: req.body.footerText
     };
 
@@ -210,6 +213,24 @@ app.post("/admin/settings", isLoggedIn, function(req, res)
 	});
     
     res.redirect("/admin/settings");
+});
+
+// Admin - Posts
+app.get("/admin/posts", isLoggedIn, function(req, res)
+{
+    res.render("admin/posts");
+});
+
+// Admin - Links
+app.get("/admin/links", isLoggedIn, function(req, res)
+{
+    res.render("admin/links");
+});
+
+// Admin - Donation Links
+app.get("/admin/donationLinks", isLoggedIn, function(req, res)
+{
+    res.render("admin/donationLinks");
 });
 
 // //Create Post
