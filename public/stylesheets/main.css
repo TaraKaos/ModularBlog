@@ -31,7 +31,6 @@ body {
   border-color: transparent transparent #505050 transparent;
 }
 
-
 /* Down */
 .container-content::-webkit-scrollbar-button:vertical:increment
 {
@@ -48,17 +47,17 @@ body {
     display: flex;
 }
 
-.navbar-commie {
+.navbar-main {
     background-color: black;
 }
 
-.navbar-commie .navbar-brand,
-.navbar-commie .navbar-text,
-.navbar-commie .nav-link {
+.navbar-main .navbar-brand,
+.navbar-main .navbar-text,
+.navbar-main .nav-link {
     color: red;
 }
 
-.navbar-commie .nav-link:hover {
+.navbar-main .nav-link:hover {
     color: yellow;
 }
 
@@ -167,18 +166,18 @@ small {
     color: red;
 }
 
-.lefty-link h3 {
+.link h3 {
     font-family: 'Just Another Hand', cursive;
     font-size: 300%;
     color: black;
 }
 
-.lefty-link h3:hover {
+.link h3:hover {
     font-size: 500%;
     color: red;
 }
 
-.lefty-links-container {
+.links-container {
     margin-bottom: 20px;
 }
 
