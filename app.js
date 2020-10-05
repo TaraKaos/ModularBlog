@@ -170,7 +170,8 @@ app.post("/admin/settings", isLoggedIn, function(req, res)
         homeLeftImageURL: req.body.homeLeftImageURL,
         homeAboutMe: req.body.homeAboutMe,
         homeAboutMeSignature: req.body.homeAboutMeSignature,
-        homeRightImageURL: req.body.homeRightImageURL
+        homeRightImageURL: req.body.homeRightImageURL,
+        siteTitle: req.body.siteTitle
     };
 
     //Remove all settings
@@ -199,7 +200,7 @@ app.post("/admin/settings", isLoggedIn, function(req, res)
         }
 	});
     
-    res.redirect("/admin");
+    res.redirect("/admin/settings");
 });
 
 // //Create Post

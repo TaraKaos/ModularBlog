@@ -8,7 +8,8 @@ var settingsSchema = new mongoose.Schema({
     homeLeftImageURL: String,
     homeAboutMe: String,
     homeAboutMeSignature: String,
-    homeRightImageURL: String
+    homeRightImageURL: String,
+    siteTitle: String
 });
 
 module.exports = mongoose.model("Settings", settingsSchema);

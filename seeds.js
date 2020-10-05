@@ -103,7 +103,8 @@ var settingsData = {
 	homeLeftImageURL: "/Images/placeholder.png",
 	homeAboutMe: "About Me Text",
 	homeAboutMeSignature: "Signature Text",
-	homeRightImageURL: "/Images/placeholder.png"
+	homeRightImageURL: "/Images/placeholder.png",
+	siteTitle: "Website Title"
 };
 
 function seedDB(){
