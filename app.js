@@ -218,7 +218,18 @@ app.post("/admin/settings", isLoggedIn, function(req, res)
 // Admin - Posts
 app.get("/admin/posts", isLoggedIn, function(req, res)
 {
-    res.render("admin/posts");
+    // get all posts from db
+    Post.find({}, function(err, posts)
+    {
+        if (err)
+        {
+            console.log(err);
+        } 
+        else 
+        {
+            res.render('admin/posts', {posts: posts});
+        }
+    });
 });
 
 // Admin - Links

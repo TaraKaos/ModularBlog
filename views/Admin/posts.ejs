@@ -2,6 +2,17 @@
 
 <h1>Admin Posts</h1>
 
-<h2>---UNDER CONTRUCTION---</h2>
+<div class="container-fluid container-content">
+    <div class="container-fluid posts-container">
+        <% posts.forEach(function(post){ %>
+            <div class="row justify-content-center">
+                <p class="admin-post-title"><%= post.title %></p>
+                <a class="admin-post-link" href="/posts/<%= post._id %>"><p>View</p></a>
+                <a class="admin-post-link" href="/posts/<%= post._id %>/Edit"><p>Edit</p></a>
+                <a class="admin-post-link" href="/posts/<%= post._id %>/Delete"><p>Delete</p></a>
+            </div>
+        <% }); %>
+    </div>
+</div>
 
 <%- include('../partials/footer') %>

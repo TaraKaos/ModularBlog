@@ -208,3 +208,14 @@ small {
 hr {
     border-top: 1px solid black;
 }
+
+.admin-post-title {
+    padding-right: 25px;
+    color: black;
+}
+
+.admin-post-link {
+    padding-left: 5px;
+    padding-right: 5px;
+    color: red;
+}
