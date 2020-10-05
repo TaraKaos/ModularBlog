@@ -237,6 +237,30 @@ app.get("/admin/newPost", isLoggedIn, function(req, res)
     res.render("posts/new");
 });
 
+//Create Post
+app.post("/Posts", isLoggedIn, function(req, res)
+{
+    //get data from form and add to Posts array
+    var title = req.body.title;
+    var image = req.body.image;
+    var content = req.body.content;
+    var newPost = {title: title, image: image, content: content};
+
+    //create a new post and save to DB
+    Post.create(newPost, function(err, newlyCreatedPost)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            // redirect back to posts page
+            res.redirect("/admin/posts");
+        }
+    });
+});
+
 // Admin - Links
 app.get("/admin/links", isLoggedIn, function(req, res)
 {
