@@ -24,7 +24,7 @@ seedDB();
 
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
-	secret: "Communism WIll Win",
+	secret: "This is my secret",
 	resave: false,
 	saveUninitialized: false
 }));
@@ -75,36 +75,6 @@ app.get("/Posts", function(req, res)
     });
 });
 
-// //Create Post
-// app.post("/Posts", function(req, res)
-// {
-//     //get data from form and add to Posts array
-//     var title = req.body.title;
-//     var image = req.body.image;
-//     var content = req.body.content;
-//     var newPost = {title: title, image: image, content: content};
-
-//     //create a new post and save to DB
-//     Post.create(newPost, function(err, newlyCreatedPost)
-//     {
-//         if (err)
-//         {
-//             console.log(err);
-//         }
-//         else
-//         {
-//             // redirect back to posts page
-//             res.redirect("/Posts");
-//         }
-//     });
-// });
-
-// //New Post
-// app.get("/posts/new", function(req, res)
-// {
-//     res.render("posts/new");
-// });
-
 //Show Post
 app.get("/posts/:id", function(req, res)
 {
@@ -124,10 +94,10 @@ app.get("/posts/:id", function(req, res)
     });
 });
 
-//Lefty Links
-app.get("/LeftyLinks", function(req, res)
+//Links
+app.get("/Links", function(req, res)
 {
-    res.render("leftylinks");
+    res.render("links");
 });
 
 //Donations
@@ -232,6 +202,36 @@ app.post("/admin/settings", isLoggedIn, function(req, res)
     res.redirect("/admin");
 });
 
+// //Create Post
+// app.post("/Posts", function(req, res)
+// {
+//     //get data from form and add to Posts array
+//     var title = req.body.title;
+//     var image = req.body.image;
+//     var content = req.body.content;
+//     var newPost = {title: title, image: image, content: content};
+
+//     //create a new post and save to DB
+//     Post.create(newPost, function(err, newlyCreatedPost)
+//     {
+//         if (err)
+//         {
+//             console.log(err);
+//         }
+//         else
+//         {
+//             // redirect back to posts page
+//             res.redirect("/Posts");
+//         }
+//     });
+// });
+
+// //New Post
+// app.get("/posts/new", function(req, res)
+// {
+//     res.render("posts/new");
+// });
+
 function isLoggedIn(req, res, next)
 {
     if (req.isAuthenticated())
@@ -244,5 +244,5 @@ function isLoggedIn(req, res, next)
 
 app.listen(process.env.PORT || 3000, process.env.IP, function()
 {
-    console.log("The Commie Angel server has started!");
+    console.log("The Modular Blog server has started!");
 });
