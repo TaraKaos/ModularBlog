@@ -104,7 +104,15 @@ var settingsData = {
 	homeAboutMe: "About Me Text",
 	homeAboutMeSignature: "Signature Text",
 	homeRightImageURL: "/Images/placeholder.png",
-	siteTitle: "Website Title"
+	siteTitle: "Website Title",
+	navbarHomeButtonTitle: "Home",
+	navbarPostButtonTitle: "Posts",
+	navbarLinksButtonTitle: "Links",
+	navbarDonateButtonTitle: "Donate",
+	navbarSettingsButtonTitle: "Settings",
+	navbarRegisterButtonTitle: "Register",
+	navbarLogoutButtonTitle: "Logout",
+	navbarTwitterURL: ""
 };
 
 function seedDB(){

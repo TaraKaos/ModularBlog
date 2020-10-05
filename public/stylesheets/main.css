@@ -204,3 +204,7 @@ small {
     width: 353px;
     height: 308px;
 }
+
+hr {
+    border-top: 1px solid black;
+}

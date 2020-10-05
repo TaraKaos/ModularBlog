@@ -171,7 +171,15 @@ app.post("/admin/settings", isLoggedIn, function(req, res)
         homeAboutMe: req.body.homeAboutMe,
         homeAboutMeSignature: req.body.homeAboutMeSignature,
         homeRightImageURL: req.body.homeRightImageURL,
-        siteTitle: req.body.siteTitle
+        siteTitle: req.body.siteTitle,
+        navbarHomeButtonTitle: req.body.navbarHomeButtonTitle,
+	    navbarPostButtonTitle: req.body.navbarPostButtonTitle,
+	    navbarLinksButtonTitle: req.body.navbarLinksButtonTitle,
+	    navbarDonateButtonTitle: req.body.navbarDonateButtonTitle,
+	    navbarSettingsButtonTitle: req.body.navbarSettingsButtonTitle,
+	    navbarRegisterButtonTitle: req.body.navbarRegisterButtonTitle,
+        navbarLogoutButtonTitle: req.body.navbarLogoutButtonTitle,
+        navbarTwitterURL: req.body.navbarTwitterURL
     };
 
     //Remove all settings

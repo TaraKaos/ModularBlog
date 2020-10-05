@@ -12,7 +12,7 @@
         <div class="container-fluid container-header overflow-hidden">
             <div class="row">
                 <div class="col-sm-3">
-                    <% if(settings.headerLeftImageURL != ""){ %>
+                    <% if (settings.headerLeftImageURL != ""){ %>
                         <img src="<%= settings.headerLeftImageURL %>" class="float-left header-image" alt="">
                     <% } %>
                 </div>
@@ -24,7 +24,7 @@
                     </p>
                 </div>
                 <div class="col-sm-3">
-                    <% if(settings.headerRightImageURL != ""){ %>
+                    <% if (settings.headerRightImageURL != ""){ %>
                         <img src="<%= settings.headerRightImageURL %>" class="float-right header-image" alt="">
                     <% } %>
                 </div>
@@ -34,29 +34,31 @@
         <!-- NavBar -->
         <ul class="nav nav-pills nav-fill navbar-main">
             <li class="nav-item">
-                <a class="nav-link" href="/">Home</a>
+                <a class="nav-link" href="/"><%= settings.navbarHomeButtonTitle %></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/posts">Posts</a>
+                <a class="nav-link" href="/posts"><%= settings.navbarPostButtonTitle %></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/links">Lefty links</a>
+                <a class="nav-link" href="/links"><%= settings.navbarLinksButtonTitle %></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/donate">Donate</a>
+                <a class="nav-link" href="/donate"><%= settings.navbarDonateButtonTitle %></a>
             </li>
-            <li class="nav-item">
-                <a href="https://twitter.com/Commie_Angel" class="nav-link" target="_blank">Twitter</a>
-            </li>
+            <% if (settings.navbarTwitterURL != ""){ %>
+                <li class="nav-item">
+                    <a href="<%= settings.navbarTwitterURL %>" class="nav-link" target="_blank">Twitter</a>
+                </li>
+            <% } %>
             <% if (currentUser){ %>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/settings">Settings</a>
+                    <a class="nav-link" href="/admin/settings"><%= settings.navbarSettingsButtonTitle %></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/register">Register</a>
+                    <a class="nav-link" href="/admin/register"><%= settings.navbarRegisterButtonTitle %></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/admin/logout">Logout</a>
+                    <a class="nav-link" href="/admin/logout"><%= settings.navbarLogoutButtonTitle %></a>
                 </li>
             <% } %>
         </ul>
