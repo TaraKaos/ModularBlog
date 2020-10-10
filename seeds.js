@@ -109,13 +109,14 @@ var settingsData = {
 	navbarPostButtonTitle: "Posts",
 	navbarLinksButtonTitle: "Links",
 	navbarDonateButtonTitle: "Donate",
-	navbarSettingsButtonTitle: "Settings",
-	navbarRegisterButtonTitle: "Register Admin",
-	navbarLogoutButtonTitle: "Logout",
 	navbarTwitterURL: "",
-	navbarAdminPostsButtonTitle: "Admin Posts",
-	navbarAdminLinksButtonTitle: "Admin Links",
-	navbarAdminDonationLinksButtonTitle: "Admin Donation Links",
+	navbarAdminButtonTitle: "Admin",
+	adminPostsTitle: "Posts Management",
+	adminLinksTitle: "Links Management",
+	adminDonationTitle: "Donation Management",
+	adminRegisterTitle: "Register Admin",
+	adminSettingsTitle: "Site Settings",
+	adminLogoutTitle: "Logout",
 	footerCopyright: "Copyright 2020"
 };
 

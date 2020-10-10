@@ -14,13 +14,14 @@ var settingsSchema = new mongoose.Schema({
 	navbarPostButtonTitle: String,
 	navbarLinksButtonTitle: String,
 	navbarDonateButtonTitle: String,
-	navbarSettingsButtonTitle: String,
-	navbarRegisterButtonTitle: String,
-    navbarLogoutButtonTitle: String,
     navbarTwitterURL: String,
-    navbarAdminPostsButtonTitle: String,
-	navbarAdminLinksButtonTitle: String,
-	navbarAdminDonationLinksButtonTitle: String,
+    navbarAdminButtonTitle: String,
+    adminPostsTitle: String,
+	adminLinksTitle: String,
+	adminDonationTitle: String,
+	adminRegisterTitle: String,
+	adminSettingsTitle: String,
+	adminLogoutTitle: String,
     footerCopyright: String
 });
 

@@ -106,16 +106,11 @@ app.get("/Donate", function(req, res)
 });
 
 // ---ADMIN/LOGIN ROUTES---
-// show login form
-app.get("/admin/login", function(req, res)
-{
-	res.render("admin/login");
-});
 
 // handling login logic
 app.post("/admin/login", passport.authenticate("local", 
 	{
-		successRedirect: "/admin/settings", 
+		successRedirect: "/admin", 
 		failureRedirect: "/admin/login"
     }), function (req, res){   
 });
@@ -124,7 +119,7 @@ app.post("/admin/login", passport.authenticate("local",
 app.get("/admin/logout", function(req, res)
 {
 	req.logout();
-	res.redirect("/admin/settings");
+	res.redirect("/admin");
 });
 
 // show register form
@@ -151,6 +146,12 @@ app.post("/admin/register", isLoggedIn, function(req, res)
 	});
 });
 
+//Admin Page
+app.get("/admin", function(req, res)
+{
+    res.render("admin");
+});
+
 //Admin Settings
 app.get("/admin/settings", isLoggedIn, function(req, res)
 {
@@ -175,14 +176,15 @@ app.post("/admin/settings", isLoggedIn, function(req, res)
 	    navbarPostButtonTitle: req.body.navbarPostButtonTitle,
 	    navbarLinksButtonTitle: req.body.navbarLinksButtonTitle,
 	    navbarDonateButtonTitle: req.body.navbarDonateButtonTitle,
-	    navbarSettingsButtonTitle: req.body.navbarSettingsButtonTitle,
-	    navbarRegisterButtonTitle: req.body.navbarRegisterButtonTitle,
-        navbarLogoutButtonTitle: req.body.navbarLogoutButtonTitle,
         navbarTwitterURL: req.body.navbarTwitterURL,
-        navbarAdminPostsButtonTitle: req.body.navbarAdminPostsButtonTitle,
-	    navbarAdminLinksButtonTitle: req.body.navbarAdminLinksButtonTitle,
-	    navbarAdminDonationLinksButtonTitle: req.body.navbarAdminDonationLinksButtonTitle,
-        footerCopyright: req.body.footerText
+        navbarAdminButtonTitle: req.body.navbarAdminButtonTitle,
+        adminPostsTitle: req.body.adminPostsTitle,
+	    adminLinksTitle: req.body.adminLinksTitle,
+	    adminDonationTitle: req.body.adminDonationTitle,
+	    adminRegisterTitle: req.body.adminRegisterTitle,
+	    adminSettingsTitle: req.body.adminSettingsTitle,
+	    adminLogoutTitle: req.body.adminLogoutTitle,
+        footerCopyright: req.body.footerCopyright
     };
 
     //Remove all settings
@@ -332,7 +334,7 @@ function isLoggedIn(req, res, next)
 		return next();
 	}
 	
-	res.redirect("/admin/login");
+	res.redirect("/admin");
 }
 
 app.listen(process.env.PORT || 3000, process.env.IP, function()
