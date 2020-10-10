@@ -78,7 +78,7 @@ app.get("/Posts", function(req, res)
 app.get("/posts/:id", function(req, res)
 {
     //find the post with provided ID
-    Post.findById(req.params.id, function(err, foundPost)
+    Post.findOne({_id: req.params.id}, function(err, foundPost)
     {
         if (err)
         {
@@ -257,6 +257,58 @@ app.post("/Posts", isLoggedIn, function(req, res)
         {
             // redirect back to posts page
             res.redirect("/admin/posts");
+        }
+    });
+});
+
+//Edit Post
+app.get("/posts/:id/edit", isLoggedIn, function(req, res)
+{
+    //find the post with provided ID
+    Post.findById(req.params.id, function(err, foundPost)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log(foundPost);
+            //render show template with that campground
+            res.render("posts/edit", {post: foundPost});
+        }
+    });
+});
+
+app.post("/posts/:id/update", isLoggedIn, function(req, res)
+{
+    //find the post with provided ID
+    Post.findByIdAndUpdate(req.params.id, function(err, foundPost)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log(foundPost);
+            
+            foundPost.title = req.body.title;
+            foundPost.image = req.body.image;
+            foundPost.content = req.body.content;
+            
+            foundPost.save(function(err)
+            {
+                if (err)
+                {
+                    console.log(err);
+                }
+                else
+                {
+                    console.log("Updated Post");
+                    res.redirect("/posts/:id");
+                }
+            });
         }
     });
 });
