@@ -4,6 +4,7 @@ var express       = require("express"),
     mongoose      = require('mongoose'),
     passport      = require("passport"),
     LocalStrategy = require("passport-local"),
+    methodOveride = require("method-override"),
     Post          = require("./models/post"),
     Settings      = require("./models/settings"),
     User          = require("./models/user"),
@@ -20,6 +21,7 @@ mongoose.connect("mongodb://localhost:27017/modularblog",
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(methodOveride("_method"));
 seedDB();
 
 // PASSPORT CONFIGURATION
@@ -282,35 +284,20 @@ app.get("/posts/:id/edit", isLoggedIn, function(req, res)
     });
 });
 
-app.post("/posts/:id/update", isLoggedIn, function(req, res)
+app.put("/posts/:id", isLoggedIn, function(req, res)
 {
     //find the post with provided ID
-    Post.findByIdAndUpdate(req.params.id, function(err, foundPost)
+    Post.findByIdAndUpdate(req.params.id, req.body.post, function(err, foundPost)
     {
         if (err)
         {
             console.log(err);
+
+            res.redirect("/posts");
         }
         else
         {
-            console.log(foundPost);
-            
-            foundPost.title = req.body.title;
-            foundPost.image = req.body.image;
-            foundPost.content = req.body.content;
-            
-            foundPost.save(function(err)
-            {
-                if (err)
-                {
-                    console.log(err);
-                }
-                else
-                {
-                    console.log("Updated Post");
-                    res.redirect("/posts/:id");
-                }
-            });
+            res.redirect("/posts/" + req.params.id);
         }
     });
 });
