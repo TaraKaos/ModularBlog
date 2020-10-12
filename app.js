@@ -110,7 +110,7 @@ app.get("/Links", function(req, res)
         } 
         else 
         {
-            res.render("links", {links: links});
+            res.render("links/index", {links: links});
         }
     });
 });
@@ -127,7 +127,7 @@ app.get("/Donate", function(req, res)
         } 
         else 
         {
-            res.render("donate", {donations: donations});
+            res.render("donations/index", {donations: donations});
         }
     });
 });
@@ -176,7 +176,7 @@ app.post("/admin/register", isLoggedIn, function(req, res)
 //Admin Page
 app.get("/admin", function(req, res)
 {
-    res.render("admin");
+    res.render("admin/index");
 });
 
 //Admin Settings
@@ -344,7 +344,18 @@ app.delete("/posts/:id", isLoggedIn, function(req, res)
 // Admin - Links
 app.get("/admin/links", isLoggedIn, function(req, res)
 {
-    res.render("admin/links");
+    // get all links from db
+    Link.find({}, function(err, links)
+    {
+        if (err)
+        {
+            console.log(err);
+        } 
+        else 
+        {
+            res.render("/admin/links", {links: links});
+        }
+    });
 });
 
 // Admin - Donation Links

@@ -1,7 +1,26 @@
 <%- include('../partials/header') %>
 
-<h1>Admin Links</h1>
+<div class="container-fluid container-content">
+    <h1>Links Management</h1>
+    
+    <div class="container-fluid posts-container">
+        <% links.forEach(function(link){ %>
+            <div class="row">
+                <p class="admin-post-title"><%= link.title %></p>
+                <form action="/links/<%= link._id %>">
+                    <button type="link">View</button>
+                </form>
+                <form action="/links/<%= link._id %>/Edit" method="GET">
+                    <button type="link">Edit</button>
+                </form> 
+                <form class="delete-form" action="/links/<%= link._id %>?_method=DELETE" method="POST">
+                    <button type="link">Delete</button>
+                </form>   
+            </div>
+        <% }); %>
+    </div>
 
-<h2>---UNDER CONTRUCTION---</h2>
+    <a class="admin-post-link" href="/admin/newLink"><p>Create New Link</p></a>
+</div>
 
 <%- include('../partials/footer') %>
