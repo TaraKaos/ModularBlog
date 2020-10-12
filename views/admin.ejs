@@ -4,24 +4,12 @@
     <h1>ADMIN PAGE</h1>
 
     <% if (currentUser){ %>
-        <li>
-            <a class="nav-link" href="/admin/posts"><%= settings.adminPostsTitle %></a>
-        </li>
-        <li>
-            <a class="nav-link" href="/admin/links"><%= settings.adminLinksTitle %></a>
-        </li>
-        <li>
-            <a class="nav-link" href="/admin/donationLinks"><%= settings.adminDonationTitle %></a>
-        </li>
-        <li>
-            <a class="nav-link" href="/admin/register"><%= settings.adminRegisterTitle %></a>
-        </li>
-        <li>
-            <a class="nav-link" href="/admin/settings"><%= settings.adminSettingsTitle %></a>
-        </li>
-        <li>
-            <a class="nav-link" href="/admin/logout"><%= settings.adminLogoutTitle %></a>
-        </li>
+        <a class="nav-link" href="/admin/posts"><%= settings.adminPostsTitle %></a>
+        <a class="nav-link" href="/admin/links"><%= settings.adminLinksTitle %></a>
+        <a class="nav-link" href="/admin/donationLinks"><%= settings.adminDonationTitle %></a>
+        <a class="nav-link" href="/admin/register"><%= settings.adminRegisterTitle %></a>
+        <a class="nav-link" href="/admin/settings"><%= settings.adminSettingsTitle %></a>
+        <a class="nav-link" href="/admin/logout"><%= settings.adminLogoutTitle %></a>
     <% } else { %>
         <form action="/admin/login" method="POST">
             <input type="text" name="username" placeholder="username">
