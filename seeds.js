@@ -1,6 +1,8 @@
 var mongoose = require("mongoose");
 var Post = require("./models/post");
 var Settings = require("./models/settings");
+var Link = require("./models/link");
+var Donation = require("./models/donation");
 
 var data = 
 [
@@ -120,25 +122,49 @@ var settingsData = {
 	footerCopyright: "Copyright 2020"
 };
 
-function seedDB(){
+var linksData = 
+[
+	{
+		title: "Move Left, Idiots!",
+		URL: "https://soundcloud.com/moveleft"
+	}
+];
+
+var donationsData = 
+[
+	{
+		title: "Venmo",
+		URL: "https://venmo.com/"
+	}
+];
+
+function seedDB()
+{
     //Remove all posts
-    Post.deleteMany({}, function(err){
-        if (err){
+	Post.deleteMany({}, function(err)
+	{
+		if (err)
+		{
             console.log(err);
         }
         console.log("removed posts!");
 
         //add a few posts
-        data.forEach(function(seed){
-            Post.create(seed, function(err, post){
-                if (err){
+		data.forEach(function(seed)
+		{
+			Post.create(seed, function(err, post)
+			{
+				if (err)
+				{
                     console.log(err);
-                } else {
+				} 
+				else 
+				{
                     console.log("added a post");
                 }
-            })
-        })
-	})
+            });
+        });
+	});
 	
 	//Remove all settings
 	Settings.deleteMany({}, function(err)
@@ -162,6 +188,64 @@ function seedDB(){
 				{
 					console.log("Added Settings");
 				}
+			});
+		}
+	});
+
+	//Remove all links
+	Link.deleteMany({}, function(err)
+	{
+		if (err)
+		{
+			console.log(err);
+		}
+		else
+		{
+			console.log("Removed Links");
+
+			//add links
+			linksData.forEach(function(link)
+			{
+				Link.create(link, function(err, newLink)
+				{
+					if (err)
+					{
+						console.log(err);
+					}
+					else 
+					{
+                    	console.log("added a link");
+                	}
+				});
+			});
+		}
+	});
+
+	//Remove all donations
+	Donation.deleteMany({}, function(err)
+	{
+		if (err)
+		{
+			console.log(err);
+		}
+		else
+		{
+			console.log("Removed Donations");
+
+			//add donations
+			donationsData.forEach(function(donation)
+			{
+				Donation.create(donation, function(err, newDonation)
+				{
+					if (err)
+					{
+						console.log(err);
+					}
+					else 
+					{
+                    	console.log("added a donation");
+                	}
+				});
 			});
 		}
 	});
