@@ -101,13 +101,35 @@ app.get("/posts/:id", function(req, res)
 //Links
 app.get("/Links", function(req, res)
 {
-    res.render("links");
+    // get all links from db
+    Link.find({}, function(err, links)
+    {
+        if (err)
+        {
+            console.log(err);
+        } 
+        else 
+        {
+            res.render("links", {links: links});
+        }
+    });
 });
 
 //Donations
 app.get("/Donate", function(req, res)
 {
-    res.render("donate");
+    // get all donations from db
+    Donation.find({}, function(err, donations)
+    {
+        if (err)
+        {
+            console.log(err);
+        } 
+        else 
+        {
+            res.render("donate", {donations: donations});
+        }
+    });
 });
 
 // ---ADMIN/LOGIN ROUTES---
