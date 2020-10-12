@@ -8,6 +8,8 @@ var express       = require("express"),
     Post          = require("./models/post"),
     Settings      = require("./models/settings"),
     User          = require("./models/user"),
+    Link          = require("./models/link"),
+    Donation      = require("./models/donation"),
     seedDB        = require("./seeds");
 
 mongoose.connect("mongodb://localhost:27017/modularblog", 
