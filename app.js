@@ -13,7 +13,8 @@ var express       = require("express"),
 mongoose.connect("mongodb://localhost:27017/modularblog", 
 {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
 })
 .then(() => console.log('Connected to DB!'))
 .catch(error => console.log(error.message));
@@ -299,6 +300,20 @@ app.put("/posts/:id", isLoggedIn, function(req, res)
         {
             res.redirect("/posts/" + req.params.id);
         }
+    });
+});
+
+// DESTORY Post ROUTE
+app.delete("/posts/:id", isLoggedIn, function(req, res)
+{
+	Post.findByIdAndRemove(req.params.id, function(err, postRemoved)
+	{
+    	if (err) 
+		{
+        	console.log(err);
+        }
+        
+        res.redirect("/admin/posts");
     });
 });
 

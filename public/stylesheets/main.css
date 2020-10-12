@@ -219,3 +219,7 @@ hr {
     padding-right: 5px;
     color: red;
 }
+
+.link-button {
+    height: 20px;
+}

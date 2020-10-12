@@ -7,9 +7,17 @@
         <% posts.forEach(function(post){ %>
             <div class="row">
                 <p class="admin-post-title"><%= post.title %></p>
-                <a class="admin-post-link" href="/posts/<%= post._id %>"><p>View</p></a>
-                <a class="admin-post-link" href="/posts/<%= post._id %>/Edit"><p>Edit</p></a>
-                <a class="admin-post-link" href="/posts/<%= post._id %>/Delete"><p>Delete</p></a>
+                <form action="/posts/<%= post._id %>">
+                    <button type="link">View</button>
+                </form>
+                <form action="/posts/<%= post._id %>/Edit" method="GET">
+                    <button type="link">Edit</button>
+                </form> 
+                <!-- <a class="admin-post-link" href="/posts/<%= post._id %>"><p>View</p></a>
+                <a class="admin-post-link" href="/posts/<%= post._id %>/Edit"><p>Edit</p></a> -->
+                <form class="delete-form" action="/posts/<%= post._id %>?_method=DELETE" method="POST">
+                    <button type="link">Delete</button>
+                </form>   
             </div>
         <% }); %>
     </div>
