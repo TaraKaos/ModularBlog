@@ -7,9 +7,6 @@
         <% links.forEach(function(link){ %>
             <div class="row">
                 <p class="admin-post-title"><%= link.title %></p>
-                <form action="/links/<%= link._id %>">
-                    <button type="link">View</button>
-                </form>
                 <form action="/links/<%= link._id %>/Edit" method="GET">
                     <button type="link">Edit</button>
                 </form> 
@@ -20,7 +17,7 @@
         <% }); %>
     </div>
 
-    <a class="admin-post-link" href="/admin/newLink"><p>Create New Link</p></a>
+    <a class="admin-post-link" href="/links/new"><p>Create New Link</p></a>
 </div>
 
 <%- include('../partials/footer') %>

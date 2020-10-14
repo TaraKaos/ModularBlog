@@ -5,11 +5,8 @@ var express       = require("express"),
     passport      = require("passport"),
     LocalStrategy = require("passport-local"),
     methodOveride = require("method-override"),
-    Post          = require("./models/post"),
     Settings      = require("./models/settings"),
     User          = require("./models/user"),
-    Link          = require("./models/link"),
-    Donation      = require("./models/donation"),
     seedDB        = require("./seeds");
 
 //requiring routes
@@ -70,16 +67,6 @@ app.use(adminRoutes);
 app.use(postsRoutes);
 app.use(linksRoutes);
 app.use(donationsRoutes);
-
-function isLoggedIn(req, res, next)
-{
-    if (req.isAuthenticated())
-    {
-		return next();
-	}
-	
-	res.redirect("/admin");
-}
 
 app.listen(process.env.PORT || 3000, process.env.IP, function()
 {
