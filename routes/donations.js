@@ -43,6 +43,38 @@ router.post("/donations", isLoggedIn, function(req, res)
     });
 });
 
+// Edit Donation
+router.get("/donations/:id/edit", isLoggedIn, function(req, res)
+{
+    //find the donation with provided ID
+    Donation.findById(req.params.id, function(err, foundDonation)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            res.render("./donations/edit", {donation: foundDonation});
+        }
+    });
+});
+
+// Update Donation
+router.put("/donations/:id", isLoggedIn, function(req, res)
+{
+    //find the donation with provided ID
+    Donation.findByIdAndUpdate(req.params.id, req.body.donation, function(err, foundDonation)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+
+        res.redirect("/admin/donationLinks");
+    });
+});
+
 function isLoggedIn(req, res, next)
 {
     if (req.isAuthenticated())
