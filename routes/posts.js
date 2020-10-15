@@ -41,14 +41,8 @@ router.get("/posts/:id", function(req, res)
 //Create Post
 router.post("/Posts", isLoggedIn, function(req, res)
 {
-    //get data from form and add to Posts array
-    var title = req.body.title;
-    var image = req.body.image;
-    var content = req.body.content;
-    var newPost = {title: title, image: image, content: content};
-
     //create a new post and save to DB
-    Post.create(newPost, function(err, newlyCreatedPost)
+    Post.create(req.body.post, function(err, newlyCreatedPost)
     {
         if (err)
         {
