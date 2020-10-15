@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 var Link = require("../models/link");
 
-//Links
+// Links
 router.get("/Links", function(req, res)
 {
     // get all links from db
@@ -19,13 +19,13 @@ router.get("/Links", function(req, res)
     });
 });
 
-//New Link
+// New Link
 router.get("/links/new", isLoggedIn, function(req, res)
 {
     res.render("links/new");
 });
 
-//Create Link
+// Create Link
 router.post("/links", isLoggedIn, function(req, res)
 {
     //get data from form and add to Posts array
@@ -43,6 +43,46 @@ router.post("/links", isLoggedIn, function(req, res)
         else
         {
             // redirect back to posts page
+            res.redirect("/admin/links");
+        }
+    });
+});
+
+// Edit Link
+router.get("/links/:id/edit", isLoggedIn, function(req, res)
+{
+    //find the post with provided ID
+    Link.findById(req.params.id, function(err, foundLink)
+    {
+        if (err)
+        {
+            console.log(err);
+        }
+        else
+        {
+            console.log(foundLink);
+            //render show template with that campground
+            res.render("./links/edit", {link: foundLink});
+        }
+    });
+});
+
+// Update Link
+router.put("/links/:id", isLoggedIn, function(req, res)
+{
+    console.log(req.body.link);
+    
+    //find the post with provided ID
+    Link.findByIdAndUpdate(req.params.id, req.body.link, function(err, foundLink)
+    {
+        if (err)
+        {
+            console.log(err);
+
+            res.redirect("/admin/links");
+        }
+        else
+        {
             res.redirect("/admin/links");
         }
     });
