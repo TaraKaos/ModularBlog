@@ -71,7 +71,7 @@ router.get("/links/:id/edit", isLoggedIn, function(req, res)
 router.put("/links/:id", isLoggedIn, function(req, res)
 {
     console.log(req.body.link);
-    
+
     //find the post with provided ID
     Link.findByIdAndUpdate(req.params.id, req.body.link, function(err, foundLink)
     {
@@ -85,6 +85,20 @@ router.put("/links/:id", isLoggedIn, function(req, res)
         {
             res.redirect("/admin/links");
         }
+    });
+});
+
+// DESTORY Link
+router.delete("/links/:id", isLoggedIn, function(req, res)
+{
+	Link.findByIdAndRemove(req.params.id, function(err, linkRemoved)
+	{
+    	if (err) 
+		{
+        	console.log(err);
+        }
+        
+        res.redirect("/admin/links");
     });
 });
 
