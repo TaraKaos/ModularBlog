@@ -1,15 +1,12 @@
 <%- include('../partials/header') %>
 
 <div class="container-fluid container-content">
-    <h1>Donation Management</h1>
+    <h1>Donation Links Management</h1>
     
     <div class="container-fluid posts-container">
         <% donations.forEach(function(donation){ %>
             <div class="row">
                 <p class="admin-post-title"><%= donation.title %></p>
-                <form action="/donations/<%= donation._id %>">
-                    <button type="link">View</button>
-                </form>
                 <form action="/donations/<%= donation._id %>/Edit" method="GET">
                     <button type="link">Edit</button>
                 </form> 
@@ -20,7 +17,7 @@
         <% }); %>
     </div>
 
-    <a class="admin-post-link" href="/admin/newDonation"><p>Create New Donation</p></a>
+    <a class="admin-post-link" href="/donations/new"><p>Create New Donation Link</p></a>
 </div>
 
 <%- include('../partials/footer') %>
