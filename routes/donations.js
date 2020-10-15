@@ -75,6 +75,20 @@ router.put("/donations/:id", isLoggedIn, function(req, res)
     });
 });
 
+// DESTORY Donation
+router.delete("/donations/:id", isLoggedIn, function(req, res)
+{
+	Donation.findByIdAndRemove(req.params.id, function(err, donationRemoved)
+	{
+    	if (err) 
+		{
+        	console.log(err);
+        }
+        
+        res.redirect("/admin/donationLinks");
+    });
+});
+
 function isLoggedIn(req, res, next)
 {
     if (req.isAuthenticated())
