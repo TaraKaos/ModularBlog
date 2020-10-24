@@ -16,12 +16,10 @@ var indexRoutes     = require("./routes/index"),
     linksRoutes     = require("./routes/links"),
     donationsRoutes = require("./routes/donations");
 
-mongoose.connect("mongodb://localhost:27017/modularblog", 
-{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    useFindAndModify: false
-})
+var dbURL = process.env.MODULAR_BLOG_DB_URL || "mongodb://localhost:27017/modularblog";
+var dbOptions = { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false };
+
+mongoose.connect(dbURL, dbOptions)
 .then(() => console.log('Connected to DB!'))
 .catch(error => console.log(error.message));
 
